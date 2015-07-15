@@ -88,7 +88,10 @@ namespace WarlightBlockBattle.Model
         {
             for (int y = 0; y <= startRow; y++)
             {
-                FieldRows.Single(r => r.Y == y).GetFreePosition(width);
+                if (FieldRows.Single(r => r.Y == y).GetFreePosition(width) == null)
+				{
+					return false;
+				}
             }
 
             return true;

@@ -10,6 +10,11 @@ using WarlightBlockBattle.Model;
 
 namespace WarlightBlockBattle.Engine
 {
+	/// <summary>
+	/// Strategy for the O Block:
+	/// ##
+	/// ##
+	/// </summary>
     public class OBlockStrategy : IBlockStrategy
     {
         /// <summary>
@@ -27,19 +32,18 @@ namespace WarlightBlockBattle.Engine
                 var freePosition = row.GetFreePosition(piece.GetWidth());
                 if (freePosition != null)
                 {
-                    if (gameField.SpaceFree(freePosition.Value, row.Y - 1, piece.GetWidth()))
+					if (gameField.SpaceFree(freePosition.Value, row.Y - 1, piece.GetWidth()))
+					{
 
+						for (int delta = 0; delta < piece.Position.X - freePosition; delta++)
+						{
+							moves.Add(MoveType.Left);
+						}
 
-
-                    for (int delta = 0; delta < piece.Position.X - freePosition; delta++)
-                    {
-                        moves.Add(MoveType.Left);
-                    }
-
-                    break;
+						break;
+					}
                 }
             }
-
 
             return moves;
         }

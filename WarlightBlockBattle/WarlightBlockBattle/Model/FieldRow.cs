@@ -56,7 +56,7 @@ namespace WarlightBlockBattle.Model
             {
                 for (int offset = 0; offset < width; offset++)
                 {
-                    if (RowData[x + offset] == CellType.Empty)
+					if (RowData[x + offset] == CellType.Empty || RowData[x + offset] == CellType.Shape)
                     {
                         if (offset == width - 1)
                         {
