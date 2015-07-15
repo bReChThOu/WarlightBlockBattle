@@ -5,6 +5,7 @@
 // <date>14/07/2015</date>
 
 using System;
+using WarlightBlockBattle.Engine;
 using WarlightBlockBattle.Helpers;
 using WarlightBlockBattle.Model;
 using WarlightBlockBattle.Settings;
@@ -78,11 +79,11 @@ namespace WarlightBlockBattle.Core
                                     GameSession.Current.SetRoundNumber(round);
                                     break;
                                 case "this_piece_type":
-                                    var pieceType = EnumHelper.Parse<PieceType>(commandargs[3]);
+                                    var pieceType = PieceType.FromString(commandargs[3]);
                                     GameSession.Current.SetPieceType(pieceType);
                                     break;
                                 case "next_piece_type":
-                                    var nextPieceType = EnumHelper.Parse<PieceType>(commandargs[3]);
+                                    var nextPieceType = PieceType.FromString(commandargs[3]);
                                     GameSession.Current.SetNextPieceType(nextPieceType);
                                     break;
                                 case "this_piece_position":
@@ -115,7 +116,7 @@ namespace WarlightBlockBattle.Core
                     }
                     break;
                 case "action":
-                    CommandBuilder.OutputActions(null);
+                    CommandBuilder.OutputActions(BlockEngine.CalculateMoves(GameSession.Current.FindPlayer()));
                     break;
             }
         }

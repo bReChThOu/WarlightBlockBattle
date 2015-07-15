@@ -57,7 +57,15 @@ namespace WarlightBlockBattle.Model
         /// <value>
         /// The current piece.
         /// </value>
-        public PieceType CurrentPiece { get; set; }
+        public PieceType CurrentPieceType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the current piece.
+        /// </summary>
+        /// <value>
+        /// The current piece.
+        /// </value>
+        public Piece CurrentPiece { get; set; }
 
         /// <summary>
         /// Gets or sets the current piece position.
@@ -65,7 +73,18 @@ namespace WarlightBlockBattle.Model
         /// <value>
         /// The current piece position.
         /// </value>
-        public PiecePosition CurrentPiecePosition { get; set; }
+        public PiecePosition CurrentPiecePosition
+        {
+            set
+            {
+                CurrentPiece = new Piece
+                {
+                    Position = value,
+                    Type = CurrentPieceType,
+                    Rotation = PieceRotation.Default
+                };
+            }
+        }
 
         /// <summary>
         /// Gets or sets the next piece.
@@ -73,7 +92,7 @@ namespace WarlightBlockBattle.Model
         /// <value>
         /// The next piece.
         /// </value>
-        public PieceType NextPiece { get; set; }
+        public PieceType NextPieceType { get; set; }
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.

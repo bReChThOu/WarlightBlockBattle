@@ -19,7 +19,7 @@ namespace WarlightBlockBattle.Settings
         /// <value>
         /// The size of the field.
         /// </value>
-        public FieldSize FieldSize { get; set; }
+        public Size Size { get; set; }
 
         /// <summary>
         /// Gets or sets the time bank.
@@ -50,7 +50,7 @@ namespace WarlightBlockBattle.Settings
         /// </summary>
         public GameSettings()
         {
-            FieldSize = new FieldSize();
+            Size = new Size();
         }
     }
 }

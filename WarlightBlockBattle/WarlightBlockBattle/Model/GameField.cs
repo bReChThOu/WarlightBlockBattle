@@ -4,6 +4,8 @@
 // <author>Brecht Houben</author>
 // <date>14/07/2014</date>
 
+using System.Collections.Generic;
+
 namespace WarlightBlockBattle.Model
 {
     /// <summary>
@@ -17,7 +19,32 @@ namespace WarlightBlockBattle.Model
         /// <value>
         /// The size of the field.
         /// </value>
-        public FieldSize FieldSize { get; set; }
+        public Size Size { get; set; }
+
+        /// <summary>
+        /// Gets the field rows.
+        /// </summary>
+        /// <value>
+        /// The field rows.
+        /// </value>
+        public IEnumerable<FieldRow> FieldRows
+        {
+            get
+            {
+                var rows = new List<FieldRow>();
+
+                for (int i = 0; i < Size.Height; i++)
+                {
+                    rows.Add(new FieldRow
+                    {
+                        Y = i,
+                        RowData = GridData[i]
+                    });
+                }
+
+                return rows;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the grid data.
@@ -27,24 +54,25 @@ namespace WarlightBlockBattle.Model
         /// </value>
         private CellType[][] GridData { get; set; }
 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GameField"/> class.
         /// </summary>
-        /// <param name="fieldSize">Size of the field.</param>
-        public GameField(FieldSize fieldSize)
+        /// <param name="size">Size of the field.</param>
+        public GameField(Size size)
         {
-            FieldSize = fieldSize;
+            Size = size;
             InitializeGrid();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GameField" /> class.
         /// </summary>
-        /// <param name="fieldSize">Size of the field.</param>
+        /// <param name="size">Size of the field.</param>
         /// <param name="gridData">The grid data.</param>
-        public GameField(FieldSize fieldSize, CellType[][] gridData)
+        public GameField(Size size, CellType[][] gridData)
         {
-            FieldSize = fieldSize;
+            Size = size;
             GridData = gridData;
         }
 
@@ -53,18 +81,18 @@ namespace WarlightBlockBattle.Model
         /// </summary>
         private void InitializeGrid()
         {
-            GridData = new CellType[FieldSize.Width][];
+            GridData = new CellType[Size.Height][];
 
-            for (int x = 0; x < FieldSize.Width; x++)
+            for (int y = 0; y < Size.Height; y++)
             {
-                GridData[x] = new CellType[FieldSize.Height];
+                GridData[y] = new CellType[Size.Width];
             }
 
-            for (int x = 0; x < FieldSize.Width; x++)
+            for (int y = 0; y < Size.Height; y++)
             {
-                for (int y = 0; y < FieldSize.Height; y++)
+                for (int x = 0; x < Size.Width; x++)
                 {
-                    GridData[x][y] = CellType.Empty;
+                    GridData[y][x] = CellType.Empty;
                 }
             }
         }

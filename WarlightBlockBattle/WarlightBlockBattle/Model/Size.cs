@@ -9,25 +9,25 @@ namespace WarlightBlockBattle.Model
     /// <summary>
     /// Describes the size of the field
     /// </summary>
-    public class FieldSize
+    public class Size
     {
         public int Width { get; set; }
         public int Height { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FieldSize"/> class.
+        /// Initializes a new instance of the <see cref="Size"/> class.
         /// </summary>
-        public FieldSize()
+        public Size()
         {
             
         }
         
         /// <summary>
-        /// Initializes a new instance of the <see cref="FieldSize"/> class.
+        /// Initializes a new instance of the <see cref="Size"/> class.
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="heigth">The heigth.</param>
-        public FieldSize(int width, int heigth)
+        public Size(int width, int heigth)
         {
             Width = width;
             Height = heigth;

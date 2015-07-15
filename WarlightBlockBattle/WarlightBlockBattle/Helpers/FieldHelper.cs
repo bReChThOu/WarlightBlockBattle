@@ -7,7 +7,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using WarlightBlockBattle.Model;
 
 namespace WarlightBlockBattle.Helpers
@@ -38,23 +37,18 @@ namespace WarlightBlockBattle.Helpers
             int heigth = rows.Length;
 
 
-            // Construct Grid
-            var gridData = new CellType[width][];
-            for (int x = 0; x < width; x++)
+            // Construct and Initialize Grid
+            var gridData = new CellType[heigth][];
+            for (int y = 0; y < heigth; y++)
             {
-                gridData[x] = new CellType[heigth];
-            }
-
-            // Fill Grid
-            for (int y = 0; y < rowList.Count; y++)
-            {
-                for (int x = 0; x < rowList[y].Length; x++)
+                gridData[y] = new CellType[width];
+                for (int x = 0; x < width; x++)
                 {
-                    gridData[x][y] = rowList[y][x];
+                    gridData[y][x] = CellType.Empty;
                 }
             }
 
-            return new GameField(new FieldSize(width, heigth), gridData);
+            return new GameField(new Size(width, heigth), gridData);
         }
 
         /// <summary>

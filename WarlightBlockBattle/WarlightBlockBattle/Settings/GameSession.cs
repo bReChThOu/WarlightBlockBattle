@@ -74,7 +74,7 @@ namespace WarlightBlockBattle.Settings
         /// <param name="width">The width.</param>
         public void SetFieldWidth(int width)
         {
-            GameSettings.FieldSize.Width = width;
+            GameSettings.Size.Width = width;
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace WarlightBlockBattle.Settings
         /// <param name="height">The height.</param>
         public void SetFieldHeight(int height)
         {
-            GameSettings.FieldSize.Height = height;
+            GameSettings.Size.Height = height;
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace WarlightBlockBattle.Settings
         /// <param name="pieceType">Type of the piece.</param>
         public void SetPieceType(PieceType pieceType)
         {
-            FindPlayer().CurrentPiece = pieceType;
+            FindPlayer().CurrentPieceType = pieceType;
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace WarlightBlockBattle.Settings
         /// <param name="pieceType">Type of the piece.</param>
         public void SetNextPieceType(PieceType pieceType)
         {
-            FindPlayer().NextPiece = pieceType;
+            FindPlayer().NextPieceType = pieceType;
         }
 
         /// <summary>
@@ -182,14 +182,12 @@ namespace WarlightBlockBattle.Settings
             FindPlayer().CurrentPiecePosition = piecePosition;
         }
 
-
-
         /// <summary>
         /// Finds the player.
         /// </summary>
         /// <param name="player">The player.</param>
         /// <returns></returns>
-        private Player FindPlayer(string player )
+        public Player FindPlayer(string player)
         {
             return Players.Single(p => p.Name == player);
         }
@@ -198,7 +196,7 @@ namespace WarlightBlockBattle.Settings
         /// Finds the player that represents ME.
         /// </summary>
         /// <returns></returns>
-        private Player FindPlayer()
+        public Player FindPlayer()
         {
             return Players.Single(p => p.PlayerType == PlayerType.Me);
         }
