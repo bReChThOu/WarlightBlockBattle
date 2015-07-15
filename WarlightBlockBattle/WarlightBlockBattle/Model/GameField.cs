@@ -5,6 +5,7 @@
 // <date>14/07/2014</date>
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace WarlightBlockBattle.Model
 {
@@ -74,6 +75,23 @@ namespace WarlightBlockBattle.Model
         {
             Size = size;
             GridData = gridData;
+        }
+
+        /// <summary>
+        /// Checks if the space is free.
+        /// </summary>
+        /// <param name="x">The x.</param>
+        /// <param name="startRow">The start row.</param>
+        /// <param name="width">The width.</param>
+        /// <returns></returns>
+        public bool SpaceFree(int x, int startRow, int width)
+        {
+            for (int y = 0; y <= startRow; y++)
+            {
+                FieldRows.Single(r => r.Y == y).GetFreePosition(width);
+            }
+
+            return true;
         }
 
         /// <summary>

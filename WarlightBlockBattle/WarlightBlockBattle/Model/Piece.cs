@@ -31,5 +31,19 @@ namespace WarlightBlockBattle.Model
         /// The rotation.
         /// </value>
         public PieceRotation Rotation { get; set; }
+
+        /// <summary>
+        /// Gets the width of the piece.
+        /// </summary>
+        /// <returns></returns>
+        public int GetWidth()
+        {
+            if (Type == PieceType.O)
+            {
+                return 2;
+            }
+
+            return 0;
+        }
     }
 }

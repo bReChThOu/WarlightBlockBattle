@@ -44,5 +44,29 @@ namespace WarlightBlockBattle.Model
         /// The row data.
         /// </value>
         public CellType[] RowData { get; set; }
+
+        /// <summary>
+        /// Determines whether this instance can host the specified width.
+        /// </summary>
+        /// <param name="width">The width.</param>
+        /// <returns></returns>
+        public int? GetFreePosition(int width)
+        {
+            for (int x = 0; x < Width - width; x++)
+            {
+                for (int offset = 0; offset < width; offset++)
+                {
+                    if (RowData[x + offset] == CellType.Empty)
+                    {
+                        if (offset == width - 1)
+                        {
+                            return x;
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 }
