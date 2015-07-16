@@ -35,7 +35,7 @@ namespace WarlightBlockBattle.Core
         {
             if (debug)
             {
-                foreach (var line in File.ReadAllLines(@"C:\localdata\houbenb\My Documents\bot.txt"))
+                foreach (var line in File.ReadAllLines(@"output.txt"))
                 {
                     _parser.Parse(line);
                 }
