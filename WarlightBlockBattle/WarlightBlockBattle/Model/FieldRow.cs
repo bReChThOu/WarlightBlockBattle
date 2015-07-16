@@ -50,18 +50,29 @@ namespace WarlightBlockBattle.Model
         /// </summary>
         /// <param name="width">The width.</param>
         /// <returns></returns>
-        public int? GetFreePosition(int width)
+        public FreePosition GetFreePosition(int width)
         {
             for (int x = 0; x < Width - width; x++)
             {
-                for (int offset = 0; offset < width; offset++)
+                for (int offset = 0; offset < Width - x; offset++)
                 {
-					if (RowData[x + offset] == CellType.Empty || RowData[x + offset] == CellType.Shape)
+                    if (RowData[x + offset] != CellType.Empty && RowData[x + offset] != CellType.Shape) // Encountered 
                     {
-                        if (offset == width - 1)
+                        return new FreePosition
                         {
-                            return x;
-                        }
+                            UsedAvailableRowSpace = width,
+                            TotalAvailableRowSpace = offset,
+                            X = x
+                        };
+                    }
+                    else if (offset == Width - x - 1)
+                    {
+                        return new FreePosition
+                        {
+                            UsedAvailableRowSpace = width,
+                            TotalAvailableRowSpace = offset + 1,
+                            X = x
+                        };
                     }
                 }
             }

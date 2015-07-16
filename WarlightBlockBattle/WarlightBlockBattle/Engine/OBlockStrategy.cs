@@ -6,15 +6,16 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using WarlightBlockBattle.Helpers;
 using WarlightBlockBattle.Model;
 
 namespace WarlightBlockBattle.Engine
 {
-	/// <summary>
-	/// Strategy for the O Block:
-	/// ##
-	/// ##
-	/// </summary>
+    /// <summary>
+    /// Strategy for the O Block:
+    /// ##
+    /// ##
+    /// </summary>
     public class OBlockStrategy : IBlockStrategy
     {
         /// <summary>
@@ -30,18 +31,13 @@ namespace WarlightBlockBattle.Engine
             foreach (var row in gameField.FieldRows.OrderByDescending(r => r.Y))
             {
                 var freePosition = row.GetFreePosition(piece.GetWidth());
-                if (freePosition != null)
+                if (freePosition != null && freePosition.TotalAvailableRowSpace != 3)
                 {
-					if (gameField.SpaceFree(freePosition.Value, row.Y - 1, piece.GetWidth()))
-					{
-
-						for (int delta = 0; delta < piece.Position.X - freePosition; delta++)
-						{
-							moves.Add(MoveType.Left);
-						}
-
-						break;
-					}
+                    if (gameField.SpaceFree(freePosition.X, row.Y - 1, piece.GetWidth()))
+                    {
+                        moves.AddRange(MoveHelper.MoveTo(piece, freePosition.X));
+                        break;
+                    }
                 }
             }
 

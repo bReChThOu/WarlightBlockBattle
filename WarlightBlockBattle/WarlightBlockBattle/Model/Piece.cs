@@ -38,9 +38,18 @@ namespace WarlightBlockBattle.Model
         /// <returns></returns>
         public int GetWidth()
         {
-            if (Type == PieceType.O)
+            switch (Type.TypeLetter)
             {
-                return 2;
+                case "O":
+                    return 2;
+                case "I":
+                    return Rotation == PieceRotation.Default || Rotation == PieceRotation.Down ? 4 : 1;
+                case "T":
+                    return Rotation == PieceRotation.Default || Rotation == PieceRotation.Down ? 3 : 2;
+                case "L":
+                    return Rotation == PieceRotation.Default || Rotation == PieceRotation.Down ? 3 : 2;
+                case "J":
+                    return Rotation == PieceRotation.Default || Rotation == PieceRotation.Down ? 3 : 2;
             }
 
             return 0;
