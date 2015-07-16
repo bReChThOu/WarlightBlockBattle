@@ -18,7 +18,7 @@ namespace WarlightBlockBattle.Engine
     {
         public IEnumerable<MoveType> CalculateMoves(Piece piece, GameField gameField)
         {
-            return null;
+            return new List<MoveType>();
         }
     }
 }
